@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+ /* MÓDULO CORS */
+ var cors = require('cors')
+
 var indexRouter = require('./routes/index');
 
 /* REFERENCIA AL MÓDULO */
@@ -21,6 +24,9 @@ var tipogClassRouter = require('./routes/rest_tipogClass');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+/* AGREGUE EL MIDDLEWARE CORS */
+app.use(cors());
 
 
 // view engine setup
