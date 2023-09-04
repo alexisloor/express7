@@ -6,6 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
+/* REFERENCIA AL MÓDULO */
+const swaggerUi = require('swagger-ui-express')
+
+/* REFERENCIA AL ARCHIVO GENERADO */
+const swaggerFile = require('./swagger_output.json')
+
 /* REFERENCIA AL MANEJADOR DE RUTAS */
 var usersClassRouter = require('./routes/rest_usersClass');
 
@@ -15,6 +21,7 @@ var tipogClassRouter = require('./routes/rest_tipogClass');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +40,9 @@ app.use('/rest/usersClass', usersClassRouter);
 
 /* RELACIÓN ENTRE LA RUTA DEL URL CON LA REFERENCIA CON EL MANEJADOR DE RUTAS */
 app.use('/rest/tipogClass', tipogClassRouter);
+
+/* CONFIGURACIÓN DE LA RUTA A LA DOCUMENTACIÓN */
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use('/users', usersRouter);
 
