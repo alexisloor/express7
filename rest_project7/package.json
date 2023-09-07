@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "packages:install": "npm install sequelize pg && npm install --save-dev sequelize-cli",
-    "db:reset": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run db:reset",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "npm run packages:install && npm run db:reset && node ./bin/www",
     "swagger-autogen": "node swagger.js"
   },
@@ -17,8 +17,12 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^3.6.0",
+    "pg": "^8.11.3",
     "sequelize": "^6.32.1",
     "swagger-autogen": "^2.23.5",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.1"
   }
 }
